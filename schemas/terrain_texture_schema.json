@@ -38,26 +38,26 @@
                                 "string",
                                 "array",
                                 "object"
-                            ]
-                        },
-                        "items": {
-                            "type": "string",
-                            "description": "File path to block texture"
-                        },
-                        "properties": {
-                            "variations": {
-                                "description": "Texture variations array",
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "path": {
-                                            "type": "string",
-                                            "description": "File path to block texture"
-                                        },
-                                        "weight": {
-                                            "type": "number",
-                                            "description": "The weight for this texture to be chosen"
+                            ],
+                            "items": {
+                                "type": "string",
+                                "description": "File path to block texture"
+                            },
+                            "properties": {
+                                "variations": {
+                                    "description": "Texture variations array",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "path": {
+                                                "type": "string",
+                                                "description": "File path to block texture"
+                                            },
+                                            "weight": {
+                                                "type": "number",
+                                                "description": "The weight for this texture to be chosen"
+                                            }
                                         }
                                     }
                                 }
