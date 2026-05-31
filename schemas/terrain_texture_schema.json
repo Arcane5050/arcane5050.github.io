@@ -58,12 +58,15 @@
                                                 "type": "number",
                                                 "description": "The weight for this texture to be chosen"
                                             }
-                                        }
+                                        },
+                                        "required": [ "path", "weight" ]
                                     }
                                 }
-                            }
+                            },
+                            "required": [ "variations" ]
                         }
-                    }
+                    },
+                    "required": [ "textures" ]
                 }
             }
         }
