@@ -1,0 +1,71 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "$id": "https://arcane5050.github.io/schemas/terrain_texture_schema.json",
+    "title": "terrain_texture",
+    "description": "Block texture references",
+    "type": "object",
+    "properties": {
+        "resource_pack_name": {
+            "description": "The name of the resource pack",
+            "type": "string"
+        },
+        "texture_name": {
+            "description": "The name of the atlas texture",
+            "type": "string",
+            "default": "atlas.terrain"
+        },
+        "padding": {
+            "description": "Texture padding",
+            "type": "number",
+            "default": 8
+        },
+        "num_mip_levels": {
+            "description": "The number of mipmap (LOD) levels",
+            "type": "number",
+            "default": 4
+        },
+        "texture_data": {
+            "description": "The block texture datas",
+            "type": "object",
+            "patternProperties": {
+                "^.*$": {
+                    "description": "A texture reference",
+                    "type": "object",
+                    "properties": {
+                        "textures": {
+                            "description": "A string or array of textures",
+                            "type": [
+                                "string",
+                                "array",
+                                "object"
+                            ]
+                        },
+                        "items": {
+                            "type": "string",
+                            "description": "File path to block texture"
+                        },
+                        "properties": {
+                            "variations": {
+                                "description": "Texture variations array",
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "path": {
+                                            "type": "string",
+                                            "description": "File path to block texture"
+                                        },
+                                        "weight": {
+                                            "type": "number",
+                                            "description": "The weight for this texture to be chosen"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
