@@ -7,7 +7,17 @@
     "properties": {
         "format_version": {
             "description": "Defines the format version of the file",
-            "type": "string"
+            "type": "string",
+            "default": "1.21.50",
+            "enum": [
+                "1.21.50",
+                "1.21.60",
+                "1.21.30",
+                "1.20.60",
+                "1.20.10",
+                "1.16",
+                "1.12"
+            ]
         },
         "minecraft:recipe_shaped": {
             "description": "Shaped recipe, ingredients must be placed in correct positions",
@@ -86,9 +96,16 @@
                             "data": {
                                 "description": "The additional information for the item",
                                 "type": "number"
+                            },
+                            "context": {
+                                "description": "The requirement for unlocking this recipe",
+                                "type": "string",
+                                "enum": [
+                                    "PlayerInWater",
+                                    "AlwaysUnlocked"
+                                ]
                             }
-                        },
-                        "required": [ "item" ]
+                        }
                     },
                     "minItems": 1
                 },
@@ -207,9 +224,16 @@
                             "data": {
                                 "description": "The additional information for the item",
                                 "type": "number"
+                            },
+                            "context": {
+                                "description": "The requirement for unlocking this recipe",
+                                "type": "string",
+                                "enum": [
+                                    "PlayerInWater",
+                                    "AlwaysUnlocked"
+                                ]
                             }
-                        },
-                        "required": [ "item" ]
+                        }
                     },
                     "minItems": 1
                 },
@@ -285,21 +309,6 @@
                 "output": {
                     "description": "Output item identifier",
                     "type": "string"
-                },
-                "unlock": {
-                    "description": "Defines items of which all associated recipes will be unlocked",
-                    "type": "array",
-                    "items": {
-                        "description": "Item unlock object",
-                        "type": "object",
-                        "properties": {
-                            "item": {
-                                "description": "Identifier of the unlock item",
-                                "type": "string"
-                            }
-                        }
-                    },
-                    "minItems": 1
                 }
             },
             "required": [ "description", "tags", "input", "output", "unlock" ]
