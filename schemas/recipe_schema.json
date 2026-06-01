@@ -1,0 +1,309 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "$id": "https://arcane5050.github.io/schemas/recipe_schema.json",
+    "title": "recipe_schema",
+    "description": "Item & block recipe definition",
+    "type": "object",
+    "properties": {
+        "format_version": {
+            "description": "Defines the format version of the file",
+            "type": "string"
+        },
+        "minecraft:recipe_shaped": {
+            "description": "Shaped recipe, ingredients must be placed in correct positions",
+            "type": "object",
+            "required": [ "description", "tags", "pattern", "key", "unlock", "result" ],
+            "properties": {
+                "description": {
+                    "description": "Contains information for the recipe",
+                    "type": "object",
+                    "properties": {
+                        "identifier": {
+                            "description": "Unique identifier for this recipe",
+                            "type": "string"
+                        }
+                    },
+                    "required": [ "identifier" ]
+                },
+                "tags": {
+                    "description": "Defines which type of crafting table this recipe will work in",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 1
+                },
+                "pattern": {
+                    "description": "An array of crafting table rows, characters representing items",
+                    "type": "array",
+                    "items": {
+                        "description": "A crafting table row, items are repesented with characters",
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 3
+                    },
+                    "minItems": 1,
+                    "maxItems": 3
+                },
+                "key": {
+                    "description": "The item identifiers for the characters in the pattern",
+                    "type": "object",
+                    "patternProperties": {
+                        "^.$": {
+                            "description": "An item, representing one unique character in the pattern, can be a string or object",
+                            "type": [ "object", "string" ],
+                            "properties": {
+                                "item": {
+                                    "description": "Identifier of the resulting item",
+                                    "type": "string"
+                                },
+                                "count": {
+                                    "description": "The amount of the resulting item",
+                                    "type": "number",
+                                    "default": 1
+                                },
+                                "data": {
+                                    "description": "The additional information for the item",
+                                    "type": "number",
+                                    "default": 0
+                                }
+                            },
+                            "required": [ "item" ]
+                        }
+                    }
+                },
+                "unlock": {
+                    "description": "Defines items of which all associated recipes will be unlocked",
+                    "type": "array",
+                    "items": {
+                        "description": "Item unlock object",
+                        "type": "object",
+                        "properties": {
+                            "item": {
+                                "description": "Identifier of the unlock item",
+                                "type": "string"
+                            },
+                            "data": {
+                                "description": "The additional information for the item",
+                                "type": "number"
+                            }
+                        },
+                        "required": [ "item" ]
+                    },
+                    "minItems": 1
+                },
+                "result": {
+                    "description": "The resulting item(s) once the recipe is complete",
+                    "type": [ "object", "array" ],
+                    "properties": {
+                        "item": {
+                            "description": "Identifier of the resulting item",
+                            "type": "string"
+                        },
+                        "count": {
+                            "description": "The amount of the resulting item",
+                            "type": "number",
+                            "default": 1
+                        },
+                        "data": {
+                            "description": "The additional information for the item",
+                            "type": "number",
+                            "default": 0
+                        }
+                    },
+                    "required": [ "item" ],
+                    "items": {
+                        "type": [ "string", "object" ],
+                        "properties": {
+                            "item": {
+                                "description": "Identifier of the resulting item",
+                                "type": "string"
+                            },
+                            "count": {
+                                "description": "The amount of the resulting item",
+                                "type": "number",
+                                "default": 1
+                            },
+                            "data": {
+                                "description": "The additional information for the item",
+                                "type": "number",
+                                "default": 0
+                            }
+                        },
+                        "required": [ "item" ],
+                        "minItems": 1
+                    }
+                }
+            }
+        },
+        "minecraft:recipe_shapeless": {
+            "description": "Shapeless recipe, ingredients do not have specific positions",
+            "type": "object",
+            "required": [ "description", "tags", "ingredients", "result", "unlock" ],
+            "properties": {
+                "description": {
+                    "description": "Contains information for the recipe",
+                    "type": "object",
+                    "properties": {
+                        "identifier": {
+                            "description": "Unique identifier for this recipe",
+                            "type": "string"
+                        }
+                    },
+                    "required": [ "identifier" ]
+                },
+                "group": {
+                    "description": "Use currently unclear",
+                    "type": "string"
+                },
+                "priority": {
+                    "description": "Tiebreaker value for conflicting recipes",
+                    "type": "number"
+                },
+                "tags": {
+                    "description": "Defines which type of crafting table this recipe will work in",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 1
+                },
+                "ingredients": {
+                    "description": "The items needed for the recipe",
+                    "type": "array",
+                    "items": {
+                        "type": [ "object", "string" ],
+                        "properties": {
+                            "item": {
+                                "description": "Identifier of the resulting item",
+                                "type": "string"
+                            },
+                            "count": {
+                                "description": "The amount of the resulting item",
+                                "type": "number",
+                                "default": 1
+                            },
+                            "data": {
+                                "description": "The additional information for the item",
+                                "type": "number",
+                                "default": 0
+                            }
+                        },
+                        "required": [ "item" ]
+                    },
+                    "minItems": 1
+                },
+                "unlock": {
+                    "description": "Defines items of which all associated recipes will be unlocked",
+                    "type": "array",
+                    "items": {
+                        "description": "Item unlock object",
+                        "type": "object",
+                        "properties": {
+                            "item": {
+                                "description": "Identifier of the unlock item",
+                                "type": "string"
+                            },
+                            "data": {
+                                "description": "The additional information for the item",
+                                "type": "number"
+                            }
+                        },
+                        "required": [ "item" ]
+                    },
+                    "minItems": 1
+                },
+                "result": {
+                    "description": "The resulting item(s) once the recipe is complete",
+                    "type": [ "object", "array" ],
+                    "properties": {
+                        "item": {
+                            "description": "Identifier of the resulting item",
+                            "type": "string"
+                        },
+                        "count": {
+                            "description": "The amount of the resulting item",
+                            "type": "number",
+                            "default": 1
+                        },
+                        "data": {
+                            "description": "The additional information for the item",
+                            "type": "number",
+                            "default": 0
+                        }
+                    },
+                    "required": [ "item" ],
+                    "items": {
+                        "type": [ "string", "object" ],
+                        "properties": {
+                            "item": {
+                                "description": "Identifier of the resulting item",
+                                "type": "string"
+                            },
+                            "count": {
+                                "description": "The amount of the resulting item",
+                                "type": "number"
+                            },
+                            "data": {
+                                "description": "The additional information for the item",
+                                "type": "number"
+                            }
+                        },
+                        "required": [ "item" ],
+                        "minItems": 1
+                    }
+                }
+            }
+        },
+        "minecraft:recipe_furnace": {
+            "description": "Furnace recipe, input -> output",
+            "type": "object",
+            "properties": {
+                "description": {
+                    "description": "Contains information for the recipe",
+                    "type": "object",
+                    "properties": {
+                        "identifier": {
+                            "type": "string",
+                            "description": "Unique identifier for this recipe (namespace:name)"
+                        }
+                    },
+                    "required": [ "identifier" ]
+                },
+                "tags": {
+                    "description": "Defines which type of furnace this recipe will work in",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 1
+                },
+                "input": {
+                    "description": "Input item identifier",
+                    "type": "string"
+                },
+                "output": {
+                    "description": "Output item identifier",
+                    "type": "string"
+                },
+                "unlock": {
+                    "description": "Defines items of which all associated recipes will be unlocked",
+                    "type": "array",
+                    "items": {
+                        "description": "Item unlock object",
+                        "type": "object",
+                        "properties": {
+                            "item": {
+                                "description": "Identifier of the unlock item",
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "minItems": 1
+                }
+            },
+            "required": [ "description", "tags", "input", "output", "unlock" ]
+        }
+    },
+    "required": [ "format_version" ]
+}

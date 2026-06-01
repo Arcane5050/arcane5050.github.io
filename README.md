@@ -1,10 +1,4 @@
-## How to use schemas
-Using schemas is simple!
-At the top of your JSON file, add `"$schema": "https://example.com"`, so your JSON file should now look like:
-```json
-{
-    "$schema": "https://example.com",
-    ...
-}
-```
-Schemas provide autocompletion, and basic error highlighting.
+## My Schemas
+Under "/schemas" are a few JSON schemas for Minecraft: Bedrock addons.
+## My Tools
+Upcoming
