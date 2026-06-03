@@ -1,0 +1,40 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "$id": "https://arcane5050.github.io/schemas/item_texture_schema.json",
+    "type": "object",
+    "description": "Item texture references",
+    "properties": {
+        "resource_pack_name": {
+            "description": "Optional resource pack name",
+            "type": "string"
+        },
+        "texture_name": {
+            "description": "Optional texture atlas identifier",
+            "type": "string",
+            "default": "atlas.items"
+        },
+        "texture_data": {
+            "description": "Contains texture references to item textures",
+            "type": "object",
+            "patternProperties": {
+                "^.*$": {
+                    "description": "A texture reference",
+                    "type": "object",
+                    "properties": {
+                        "textures": {
+                            "description": "Filepath to a texture or an array of filepaths",
+                            "type": [ "string", "array" ],
+                            "items": {
+                                "description": "Filepath to a texture",
+                                "type": "string"
+                            },
+                            "minItems": 1
+                        }
+                    },
+                    "required": [ "textures" ]
+                }
+            }
+        }
+    },
+    "required": [ "texture_data" ]
+}
